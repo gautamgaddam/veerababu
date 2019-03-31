@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+    }
+header{
+  position: absolute;
+    width: -webkit-fill-available;
+}
+    /* header */
+    #navbar {
+
+      z-index: 100;
+      background: transparent;
+      transition: 0.3s linear all;
+      color: white;
+
+
+
+    }
+
+    #pinContainer {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-perspective: 1000;
+      perspective: 1000;
+    }
+
+    #slideContainer {
+      width: 400%;
+      height: 100vh;
+    }
+
+    .panel {
+      height: 100vh;
+      width: 25%;
+      float: left;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 100px;
+      display: inline-block;
+    }
+
+    .one {
+      background-color: #5a2c74;
+      color: white;
+    }
+
+    .one button {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .two {
+      background-color: #ab6eb6;
+      color: white;
+    }
+
+    .three {
+      background-color: #dd6f96;
+      color: white;
+      position: relative;
+    }
+
+    .four {
+      background-color: #4cb2a5;
+      color: #FFF;
+    }
+
+    .horizontal-line {
+      border-top: 4px solid #FFF;
+      height: 4px;
+      width: 0px;
+      position: absolute;
+    }
+
+    .frow {
+      display: flex;
+      align-items: center;
+
+    }
+
+    .frow-head div {
+      margin-right: 20px;
+    }
+
+    .spacebet {
+      justify-content: space-between
+    }
+
+    .navbar-sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(27, 109, 174, 0.8) !important;
+      color: white !important;
+
+
+      transition: all 0.6s ease-out;
+    }
+
+    .ml-3 {
+      margin-left: 1.5rem;
+    }
+
+    .navscrol {
+      padding-top: 30px;
+    }
+
+    .notscroll {
+      padding-top: 10px;
+    }
+    .main-1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+     
+    }
+    .main-1 h1{
+      margin-top: 0;
+      font-size: 2.5rem; 
+      color: white;   }
+      #sec1{
+        height: 100vh;
+     
+        background: rgba(27, 109, 174, 0.8);
+      }
+      .grass{
+        position: absolute;
+    width: 100%;
+    bottom: 0;
+    background: url(grass.png);
+    height: 13vh;
+    background-size: contain;
+  
+      }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="frow spacebet" id="navbar">
+      <div class="ml-3">
+        <h3>TechPot</h3>
+      </div>
+      <div class="frow frow-head">
+        <div>Careers</div>
+        <div>Services</div>
+        <div>About Us</div>
+        <div>Portfolio</div>
+        <div>Hire Us</div>
+      </div>
+    </div>
+  </header>
+  <section id="sec1">
+    <div class="main-1"><h1>WE INNOVATE NEXT BIG THING
+    </h1></div>
+    <div class="grass"></div>
+  </section>
+
+  <section>
+    <div id="pinContainer">
+      <div id="slideContainer">
+        <div class="panel one">
+          <h1 class="">Ever since I<br>left the city you</h1>
+          <span class="horizontal-line"></span>
+        </div>
+        <div class="panel two">
+          <h1>Got a reputation<br>for yourself now</h1>
+        </div>
+        <div class="panel three">
+          <h1>Everybody knows <br>and I feel left out</h1>
+        </div>
+        <div class="panel four">
+          <h1>Girl you got me down,<br>you got me stressed out</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<script src=""></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+  var x = $(".one h1").offset();
+  var one = $(".one").width();
+  var para = $(".one h1").width();
+  var right = one - (x.left + para);
+  var twoOffset = $(".two h1").offset();
+  var twoLeftOffset = twoOffset.left - one;
+  var firstLine = twoLeftOffset + right;
+  var leftPos = para + x.left;
+
+  $(".horizontal-line").css({ "top": x.top, "left": leftPos });
+  // init controller
+  var controller = new ScrollMagic.Controller();
+
+  var controller = new ScrollMagic.Controller();
+
+  // define movement of panels
+  var wipeAnimation = new TimelineMax()
+    .to("#slideContainer", 1, { x: "-75%" })
+
+  // create scene to pin and link animation
+  new ScrollMagic.Scene({
+    triggerElement: "#pinContainer",
+    triggerHook: "onLeave",
+    duration: "500%"
+  })
+    .setPin("#pinContainer")
+    .setTween(wipeAnimation)
+    .addIndicators()
+    .addTo(controller);
+
+
+  var horizontal = new ScrollMagic.Scene({
+    offset: 50,
+    duration: 300,
+    // reverse: false
+  }).setTween(".horizontal-line", { width: firstLine }) // trigger a TweenMax.to tween
+    // .addIndicators()
+    .addTo(controller);
+
+
+
+
+  //scroll
+
+  window.onscroll = function () {
+    console.log(navbar.offsetTop);
+    console.log(window.pageYOffset);
+    myFunction()
+  };
+
+  var navbar = document.getElementById("navbar");
+  var sticky = navbar.offsetTop + 10;
+
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      $('#navbar').addClass('navbar-sticky navscrol');
+      $('#navbar').removeClass('notscroll');
+
+    } else{
+      $('#navbar').removeClass('navbar-sticky navscrol');
+      $('#navbar').addClass('notscroll');
+
+    }
+  
+  }
+</script>
+
+</html>
